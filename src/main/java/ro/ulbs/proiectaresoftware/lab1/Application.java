@@ -1,12 +1,62 @@
 package ro.ulbs.proiectaresoftware.lab1;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
+import java.util.Scanner;
+
 public class Application {
 
-    public boolean isCharInString(char c, String str) {
-        return str.indexOf(c) >= 0;
+    static String[] splitSmallTextFileIntoWords(String fileName) throws IOException {
+
+        System.out.println("Using Files.readAllLines:");
+        Path path = Paths.get(fileName);
+
+        String text = Files.readAllLines(path).getFirst();
+        String[] words = text.split(" ");
+
+        printWordList(words);
+        return words;
     }
 
-    public static void main(String[] args) {
+    static String[] splitSmallTextFileIntoLines(String fileName) throws IOException {
+
+        System.out.println("Using Files.readAllLines:");
+        Path path = Paths.get(fileName);
+
+        String text = Files.readAllLines(path).getFirst();
+        String[] linesByPeriod = text.split("\\.");
+
+        printWordList(linesByPeriod);
+        return linesByPeriod;
+    }
+
+    static void writeSmallTextFile(String fileName, String[] text) throws IOException {
+        Path path = Paths.get(fileName);
+        Files.write(path, List.of(text));
+    }
+
+    static void printWordList(String[] words) {
+        for (String word : words) {
+            System.out.println(word);
+        }
+        System.out.println();
+    }
+//    static void printLargerTextFile(String fileName) throws IOException {
+//        System.out.println("Using Scanner:");
+//        Path path = Paths.get(fileName);
+//
+//        try (Scanner scanner = new Scanner(path)){
+//            while (scanner.hasNextLine()){
+//                //process each line in some way
+//                System.out.println(": " + scanner.nextLine());
+//            }
+//        }
+//    }
+
+    static void alfabet(){
         //INIT VARS
         String alfabet = "";
         String regex = "(?=e)|(?=i)|(?=o)|(?=u)"; //aeiou
@@ -30,6 +80,18 @@ public class Application {
         System.out.println();
         for(String s : UpperCaseArray){
             System.out.println(s);
+        }
+    }
+
+    public static void main(String[] args) {
+        try{
+            String[] words = splitSmallTextFileIntoWords("in.txt");
+            writeSmallTextFile("out.txt", words);
+            String[] lines = splitSmallTextFileIntoLines("in.txt");
+            //writeSmallTextFile("out.txt", lines); //ISSUE: overrides previous text
+        }
+        catch(IOException e){
+            e.printStackTrace();
         }
     }
 }
