@@ -7,6 +7,8 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Scanner;
 
+
+
 public class Application {
 
     static String[] splitSmallTextFileIntoWords(String fileName) throws IOException {
@@ -44,17 +46,6 @@ public class Application {
         }
         System.out.println();
     }
-//    static void printLargerTextFile(String fileName) throws IOException {
-//        System.out.println("Using Scanner:");
-//        Path path = Paths.get(fileName);
-//
-//        try (Scanner scanner = new Scanner(path)){
-//            while (scanner.hasNextLine()){
-//                //process each line in some way
-//                System.out.println(": " + scanner.nextLine());
-//            }
-//        }
-//    }
 
     static void alfabet(){
         //INIT VARS
