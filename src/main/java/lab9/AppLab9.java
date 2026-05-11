@@ -1,6 +1,8 @@
 package lab9;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Random;
 import java.util.stream.IntStream;
 
@@ -26,5 +28,25 @@ public class AppLab9 {
 
         System.out.println(numbers.contains(12) ? "Lista contine 12" : "Lista nu contine 12");
 
+        String sentence = "Acesta este un program scris in java pentru expresii lambda";
+        ArrayList<String> words = new ArrayList<>(
+                Arrays.asList(sentence.split(" "))
+        );
+        ArrayList<String> longwords = new ArrayList<>();
+        words.forEach(word -> {
+            if(word.length() >= 5)
+                    longwords.add(word);
+        });
+
+        System.out.println("Numarul de cuvinte lungi = " + longwords.size());
+        Collections.sort(longwords);
+        longwords.forEach(word -> System.out.println(word));
+        System.out.println();
+        String pword;
+        longwords.forEach(word -> {
+            if(word.charAt(0)=='p'){
+                System.out.println(word);
+            }
+        });
     }
 }
