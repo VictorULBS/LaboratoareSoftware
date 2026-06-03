@@ -17,5 +17,6 @@ public class ObserverPatternDemo {
 
         String message2 = "Singleton Pattern in Java";
         channel.uploadVideo(message2);
+
     }
 }
